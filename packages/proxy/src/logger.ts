@@ -1,7 +1,11 @@
-import pino from 'pino';
+import pino from "pino";
 
 export const logger = pino(
-  process.env['NODE_ENV'] === 'production'
+  process.env["NODE_ENV"] === "production"
     ? {}
-    : { transport: { target: 'pino-pretty', options: { colorize: true } } }
+    : { transport: { target: "pino-pretty", options: { colorize: true } } },
 );
+
+export function createLogger(component: string) {
+  return logger.child({ component });
+}

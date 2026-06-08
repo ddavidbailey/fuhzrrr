@@ -2,11 +2,12 @@ import type { Request, Response, NextFunction, RequestHandler } from "express";
 import type { FuzzingEngine } from "./fuzzingEngineInterface.js";
 import type { ProxyConfig } from "./config.js";
 import { cloneRequest } from "./cloneRequest.js";
-import { logger } from "./logger.js";
+import { createLogger } from "./logger.js";
 
 // Write methods are in scope for fuzzing but require the operator to have
 // acknowledged the target database is disposable before they are enabled
 const WRITE_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
+const interceptMiddlewareLogger = createLogger("interceptMiddleware");
 
 export function createInterceptMiddleware(
   engine: FuzzingEngine,
@@ -18,7 +19,7 @@ export function createInterceptMiddleware(
     // Standard / aggressive levels include write methods, but only if the operator
     // has explicitly acknowledged the target database is disposable
     if (isWrite && (!config.writeGuardAck || config.level === "safe")) {
-      logger.warn(
+      interceptMiddlewareLogger.warn(
         { method: req.method, url: req.url },
         "write-method fuzzing skipped: either writeGuardAck is false or config level is safe",
       );

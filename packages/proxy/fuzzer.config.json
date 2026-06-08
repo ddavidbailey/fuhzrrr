@@ -1,0 +1,7 @@
+{
+  "targetUrl": "http://localhost:3000",
+  "proxyPort": 4000,
+  "level": "safe",
+  "writeGuardAck": false,
+  "openApiSpecPath": "./openapi.json"
+}

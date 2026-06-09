@@ -1,0 +1,5 @@
+{
+  "dbPath": "/data/fuzzer.db",
+  "httpPort": 3001,
+  "wsPort": 3002
+}

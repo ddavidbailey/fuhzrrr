@@ -7,7 +7,7 @@ const indexLogger = createLogger("index");
 
 // Load and validate config from the JSON file specified by the CONFIG_PATH
 // environment variable, falling back to fuzzer.config.json in the working directory
-const configPath = process.env["CONFIG_PATH"] ?? "fuzzer.config.json";
+const configPath = "fuzzer.config.json";
 const config = loadConfig(configPath);
 
 const engine = new NoopEngine();

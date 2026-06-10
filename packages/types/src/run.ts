@@ -1,4 +1,6 @@
+import { UUID } from "node:crypto";
+
 export interface RunEvent {
-  runId: string;
-  timestamp: number;
+  runId: UUID;
+  timestamp: Date;
 }

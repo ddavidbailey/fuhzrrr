@@ -1,7 +1,7 @@
 CREATE TABLE `findings` (
 	`id` text PRIMARY KEY NOT NULL,
 	`run_id` text NOT NULL,
-	`timestamp` integer NOT NULL,
+	`timestamp` integer,
 	`endpoint` text NOT NULL,
 	`mutation_type` text NOT NULL,
 	`status_code` integer NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `runs` (
 CREATE TABLE `scores` (
 	`id` text PRIMARY KEY NOT NULL,
 	`run_id` text NOT NULL,
-	`timestamp` integer NOT NULL,
+	`timestamp` integer,
 	`composite` real NOT NULL,
 	`input_validation` real NOT NULL,
 	`auth_hardening` real NOT NULL,

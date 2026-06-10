@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "ac3662ee-0ab2-47df-8896-836f638d0390",
+  "id": "273bbffb-bba6-4751-8e61-e2d9e3abe895",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "findings": {
@@ -25,7 +25,7 @@
           "name": "timestamp",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "endpoint": {
@@ -143,7 +143,7 @@
           "name": "timestamp",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "composite": {

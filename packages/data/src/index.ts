@@ -1,3 +1,4 @@
+import { createServer } from "node:http";
 import { createClient } from "./db/client.js";
 import { createApp } from "./api/server.js";
 import { createWsServer } from "./ws/server.js";
@@ -15,8 +16,9 @@ const configPath = "data.config.json";
 const config = loadConfig(configPath);
 const log = createLogger("index");
 const db = createClient(config.dbPath);
-const wss = createWsServer(config.wsPort);
 const app = createApp(db);
+const httpServer = createServer(app);
+const wss = createWsServer(httpServer);
 
 export function startRun(event: RunEvent): void {
   insertRun(db, { id: event.runId, startedAt: event.timestamp });
@@ -73,6 +75,6 @@ export function storeFinding(event: FindingEvent): void {
   if (latest) broadcast(wss, { type: "score_update", payload: latest });
 }
 
-app.listen(config.httpPort, () => {
-  log.info({ port: config.httpPort }, "HTTP API listening");
+httpServer.listen(config.httpPort, () => {
+  log.info({ port: config.httpPort }, "HTTP API + WebSocket listening");
 });
